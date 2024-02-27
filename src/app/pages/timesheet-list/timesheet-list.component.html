@@ -1,0 +1,36 @@
+<app-nav-bar></app-nav-bar>
+<div class="vacation-section">
+  <div class="header-container">
+    <h2 class="big-heading">Request List</h2>
+    <div class="button-container">
+      <button type="button" id="sortButton" (click)="toggleSortOrder()">
+        Sort by Created Date
+      </button>
+      <button routerLink="/user-view">Back</button>
+    </div>
+  </div>
+  <div class="card-container">
+    <ng-container
+      *ngIf="
+        userData?.timesheetDetails && userData.timesheetDetails.length > 0;
+        else noTimesheets
+      "
+    >
+      <ul id="vacationList">
+        <li
+          *ngFor="let timesheet of userData.timesheetDetails"
+          [ngStyle]="getStatusStyle(timesheet.status)"
+        >
+          <p>From: {{ timesheet.fromDate | date }}</p>
+          <p>To: {{ timesheet.toDate | date }}</p>
+          <p>Note: {{ timesheet.note }}</p>
+          <p>Status: {{ timesheet.status }}</p>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-template #noTimesheets>
+      <p>You have no timesheets to be displayed here.</p>
+    </ng-template>
+  </div>
+</div>
+<app-footer></app-footer>

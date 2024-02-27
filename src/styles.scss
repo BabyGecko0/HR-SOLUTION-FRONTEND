@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@use "igniteui-angular/theming" as *;
+
+@include core();
+@include typography(
+  $font-family: $material-typeface,
+  $type-scale: $material-type-scale
+);
+@include theme($default-palette);
+
+@import "bootstrap/scss/bootstrap";
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}

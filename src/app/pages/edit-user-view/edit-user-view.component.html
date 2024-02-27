@@ -1,0 +1,110 @@
+<app-nav-bar></app-nav-bar>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manager's View</title>
+  </head>
+
+  <body class="outlet-wrapper">
+    <div class="container">
+      <h2>Edit User/Manage Request</h2>
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label for="firstName"> First Name:</label>
+          <input
+            type="text"
+            name="firstName"
+            formControlName="firstName"
+            required
+            placeholder="First Name"
+          />
+        </div>
+
+        <div
+          class="error"
+          *ngIf="form.get('firstName')?.errors?.['required'] && form.get('firstName')?.dirty"
+        >
+          First Name is required
+        </div>
+        <div class="form-group">
+          <label for="lastName"> Last Name:</label>
+          <input
+            type="text"
+            name="lastName"
+            formControlName="lastName"
+            required
+            placeholder="Last Name"
+          />
+        </div>
+
+        <div
+          class="error"
+          *ngIf="form.get('lastName')?.errors?.['required'] && form.get('lastName')?.dirty"
+        >
+          Last Name is required
+        </div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            name="username"
+            formControlName="username"
+            required
+            placeholder="Username"
+          />
+        </div>
+        <div
+          class="error"
+          *ngIf="form.get('username')?.errors?.['required'] && form.get('username')?.dirty"
+        >
+          Username is required
+        </div>
+        <div class="form-group">
+          <label for="note">Note:</label>
+          <input
+            type="text"
+            name="note"
+            formControlName="note"
+            placeholder="No Notes  Available"
+            readonly
+            style="width: 100%; height: 150px"
+          />
+        </div>
+
+        <div class="button-container">
+          <button class="btn btn-success btn-lg save-btn" (click)="onApprove()">
+            Approve
+          </button>
+        </div>
+        <div class="button-container">
+          <button class="btn btn-reject btn-lg" (click)="onReject()">
+            Reject
+          </button>
+        </div>
+        <div class="button-container">
+          <div class="save-btn-container">
+            <button
+              class="btn btn-success btn-sm save-btn"
+              [disabled]="form.invalid"
+              (click)="onSave()"
+            >
+              Save
+            </button>
+          </div>
+          <div class="close-btn-container">
+            <button
+              class="btn btn-success btn-sm close-btn"
+              routerLink="/manager-view"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+        <br />
+      </form>
+    </div>
+  </body>
+  <app-footer></app-footer>
+</html>

@@ -1,0 +1,113 @@
+body {
+  font-family: Arial, sans-serif;
+  background: url("https://img.freepik.com/free-vector/blue-polygon-dark-background-social-template_53876-116080.jpg?w=1380&t=st=1708299796~exp=1708300396~hmac=fda7fc38cbbfb924b3eda59ca7af2ca6bcdfa9af70ab4463b8a20965839d4c71")
+    center/cover no-repeat fixed;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.signup-container {
+  width: 350px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+h1 {
+  color: #2c3e50;
+}
+
+label {
+  color: #2c3e50;
+}
+
+input[type="text"],
+input[type="username"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #2980b9;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #27ae60;
+}
+
+.signup-container form .error {
+  color: #e74c3c;
+}
+
+.error {
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: red;
+}
+
+.error-message-box {
+  border: 1px solid red;
+  background-color: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  top: -50px;
+  width: -moz-fit-content;
+  text-align: center;
+  width: -webkit-fill-available;
+}
+
+.form-wrapper {
+  position: relative;
+}
+
+.error-message-box p {
+  color: red;
+  font-size: 14px;
+  margin: 0;
+}
+
+.signup-container h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+.password-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input input {
+  flex-grow: 1;
+  padding-right: 30px;
+}
+
+.password-input button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 15px;
+  border: none;
+  padding: 0 10px;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+}

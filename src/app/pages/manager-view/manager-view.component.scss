@@ -1,0 +1,165 @@
+.body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.card-container {
+  width: 700px;
+  height: 50px;
+  margin: 5px;
+  display: inline-table;
+}
+
+div {
+  margin: 10px auto;
+  padding: 20px;
+  background: linear-gradient(to right, #fff, #eee);
+  border-radius: 10px;
+}
+
+.card-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sortButton {
+  margin-left: auto;
+}
+
+.btn {
+  margin-left: 5px;
+}
+
+h1,
+h2,
+h3 {
+  color: #333;
+  font-size: 2em;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 12px;
+  margin-top: 10px;
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #218c54;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  background: #ecf0f1;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+label {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input,
+textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.manager-container {
+  width: 800px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #fff;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-edit {
+  color: white;
+}
+
+.btn-approve {
+  background-color: green;
+  color: white;
+}
+
+.btn-reject {
+  background-color: red;
+  color: white;
+}
+
+.card-text {
+  display: inline-block;
+  margin-right: 10px;
+}
+.sortButton {
+  margin-left: auto;
+  padding: 12px;
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sortButton:hover {
+  background: #218c54;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#sortButton {
+  margin-left: auto;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#searchInput {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 20px;
+}

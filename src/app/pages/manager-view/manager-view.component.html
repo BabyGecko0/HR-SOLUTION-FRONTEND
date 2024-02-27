@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <app-nav-bar></app-nav-bar>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manager's View</title>
+  </head>
+  <body class="outlet-wrapper">
+    <div class="manager-container">
+      <div>
+        <div class="form-container">
+          <h1>Welcome, Sir/Miss Manager</h1>
+          <h2>Timesheets List</h2>
+          <div class="header-buttons">
+            <input
+              type="text"
+              id="searchInput"
+              #searchInputPlaceholder
+              placeholder="Search by Username"
+            />
+            <button
+              type="button"
+              id="searchButton"
+              (click)="onSearchButtonClick(searchInputPlaceholder.value)"
+            >
+              Search
+            </button>
+            <button
+              type="button"
+              id="sortButton"
+              (click)="toggleSortOrder()"
+              style="margin-right: 0"
+            >
+              Sort by Request Date
+            </button>
+          </div>
+          <div
+            *ngFor="let timesheet of timesheets | search : searchUsername"
+            class="card-container"
+          >
+            <div class="card">
+              <div class="card-body">
+                <p class="card-text">
+                  Username: {{ timesheet.userDetails.username }}
+                </p>
+                <p class="card-text">
+                  Days Off: {{ timesheet.userDetails.daysOff }}
+                </p>
+                <p class="card-text">
+                  Starting date: {{ timesheet.fromDate | date }}
+                </p>
+                <p class="card-text">
+                  Ending Date: {{ timesheet.toDate | date }}
+                </p>
+
+                <button
+                  class="btn btn-edit"
+                  (click)="onContactClick(timesheet.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-reject"
+                  (click)="deleteTimesheet(timesheet.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-footer></app-footer>
+  </body>
+</html>

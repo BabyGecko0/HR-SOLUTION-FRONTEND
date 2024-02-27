@@ -1,0 +1,101 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+</head>
+
+<body>
+  <div class="form-wrapper">
+    <div class="error-message-box" *ngIf="apiErrorMessage">
+      <i class="fa fa-warning"></i>
+      {{ apiErrorMessage }}
+    </div>
+    <div class="signup-container">
+      <h1>Sign Up</h1>
+      <form [formGroup]="signupForm" (ngSubmit)="signUpNewUser()">
+        <label for="firstName">First Name:</label>
+        <input
+          type="text"
+          placeholder="Your First Name"
+          formControlName="firstName"
+          id="firstName"
+          name="firstName"
+        />
+        <div
+          *ngIf="signupForm.get('firstName')?.errors?.['required'] && signupForm.get('firstName')?.touched"
+          class="error"
+        >
+          First Name is required
+        </div>
+        <label for="lastName">Last Name:</label>
+        <input
+          type="text"
+          placeholder="Your Last Name"
+          formControlName="lastName"
+          id="lastName"
+          name="lastName"
+        />
+        <div
+          *ngIf="signupForm.get('lastName')?.errors?.['required'] && signupForm.get('lastName')?.touched"
+          class="error"
+        >
+          Last Name is required
+        </div>
+        <label for="username">Username:</label>
+        <input
+          type="username"
+          placeholder="Your Username"
+          formControlName="username"
+          id="username"
+          name="username"
+        />
+        <div
+          *ngIf="signupForm.get('username')?.errors?.['required'] && signupForm.get('username')?.touched"
+          class="error"
+        >
+          Username is required
+        </div>
+        <label for="password">Password:</label>
+        <div class="password-input">
+          <input
+            type="{{ passwordVisible ? 'text' : 'password' }}"
+            placeholder="Your Password"
+            formControlName="password"
+            id="password"
+            name="password"
+          />
+          <button type="button" (click)="togglePasswordVisibility()">
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-eye': passwordVisible,
+                'fa-eye-slash': !passwordVisible
+              }"
+            ></i>
+          </button>
+        </div>
+        <br />
+        <div
+          *ngIf="signupForm.get('password')?.errors?.['required'] && signupForm.get('password')?.touched"
+          class="error"
+        >
+          Password is required
+        </div>
+        <div
+          *ngIf="signupForm.get('password')?.errors?.['minlength'] && signupForm.get('password')?.touched"
+          class="error"
+        >
+          Password must have at least 8 characters
+        </div>
+        <br />
+        <button [disabled]="signupForm.invalid" type="submit">Sign Up</button>
+        <br />
+        <p>You already have an account? <a routerLink="">Log in</a> here.</p>
+      </form>
+    </div>
+  </div>
+</body>

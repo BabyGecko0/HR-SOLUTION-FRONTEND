@@ -1,0 +1,77 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <title>Login</title>
+</head>
+<body>
+  <div class="form-wrapper">
+    <div class="error-message-box" *ngIf="apiErrorMessage">
+      <i class="fa fa-warning"></i>
+      {{ apiErrorMessage }}
+    </div>
+    <div class="login-container">
+      <h1>Log In</h1>
+      <form [formGroup]="form" (ngSubmit)="logIn()">
+        <label for="username">Username:</label><br />
+        <input
+          type="text"
+          placeholder="Your Username"
+          id="username"
+          name="username"
+          formControlName="username"
+        /><br />
+        <div
+          class="error"
+          *ngIf="
+            form.controls['username'].hasError('required') &&
+            form.controls['username'].dirty
+          "
+        >
+          Username is required
+        </div>
+
+        <label for="password">Password:</label><br />
+        <div class="password-input">
+          <input
+            type="password"
+            [type]="passwordVisible ? 'text' : 'password'"
+            placeholder="Your Password"
+            id="password"
+            name="password"
+            formControlName="password"
+          />
+          <button
+            type="button"
+            (click)="togglePasswordVisibility()"
+            style="margin-left: 10px"
+          >
+            <i
+              class="fa"
+              [ngClass]="{
+                'fa-eye': passwordVisible,
+                'fa-eye-slash': !passwordVisible
+              }"
+            ></i>
+          </button>
+        </div>
+        <div
+          class="error"
+          *ngIf="
+            form.controls['password'].hasError('required') &&
+            form.controls['password'].dirty
+          "
+        >
+          Password is required
+        </div>
+        <br />
+        <button type="submit" [disabled]="!form.valid">Login</button>
+      </form>
+
+      <p>Don't have an account? <a routerLink="/sign-up">Sign Up</a> here.</p>
+    </div>
+  </div>
+</body>

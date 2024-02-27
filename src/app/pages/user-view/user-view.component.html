@@ -1,0 +1,100 @@
+<app-nav-bar></app-nav-bar>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha384-ezvFN3NG9lq+1PaXSo27VnYUzdMKZlOd8C3M/a9yEXUZjX4dz/KlFAjMEgk5t2t9"
+      crossorigin="anonymous"
+    />
+
+    <title>Employee View</title>
+  </head>
+  <body>
+    <div class="user-container" *ngIf="userData">
+      <div class="sections-container">
+        <div>
+          <h1 class="big-heading">
+            Welcome , {{ userData.firstName }} {{ userData.lastName }}
+          </h1>
+          <h2 class="big-heading">Your Information</h2>
+          <p>First Name: {{ userData.firstName }}</p>
+          <p>Last Name: {{ userData.lastName }}</p>
+          <p>Username: {{ userData.username }}</p>
+          <p>Days Left: {{ userData.daysOff }}</p>
+          <button routerLink="/timesheet">Request List</button>
+        </div>
+
+        <div>
+          <div class="vacation-section" *ngIf="userData.daysOff > 0">
+            <h2 class="big-heading">Vacation Request</h2>
+            <form [formGroup]="vacationForm">
+              <div class="form-group">
+                <label for="fromDate">From Date:</label>
+                <ngb-datepicker
+                  formControlName="fromDate"
+                  [markDisabled]="beforeDateDisabled"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                ></ngb-datepicker>
+              </div>
+              <div class="form-group">
+                <label for="toDate">To Date:</label>
+                <ngb-datepicker
+                  formControlName="toDate"
+                  [markDisabled]="beforeDateDisabled"
+                  [minDate]="minDate"
+                  [maxDate]="maxDate"
+                ></ngb-datepicker>
+              </div>
+              <div class="form-group">
+                <textarea
+                  id="note"
+                  placeholder="Write the reason you would like to go on vacation or request..."
+                  formControlName="note"
+                  rows="4"
+                  cols="50"
+                ></textarea>
+              </div>
+              <button
+                type="button"
+                id="requestButton"
+                (click)="onRequestButtonClick()"
+              >
+                Request
+              </button>
+            </form>
+          </div>
+          <div class="vacation-section" *ngIf="userData.daysOff === 0">
+            <form [formGroup]="vacationForm">
+              <h2 class="big-heading">Request</h2>
+              <p id="vacationMessage">
+                I am sorry, but you have no more vacation days for this year.
+              </p>
+              <div class="form-group">
+                <textarea
+                  id="note"
+                  placeholder="Write your request here..."
+                  formControlName="note"
+                  rows="4"
+                  cols="50"
+                ></textarea>
+              </div>
+              <button
+                type="button"
+                id="requestButton"
+                (click)="onRequestButtonClick()"
+              >
+                Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<app-footer></app-footer>

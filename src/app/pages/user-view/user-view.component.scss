@@ -1,0 +1,131 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css";
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+div {
+  max-width: 700px;
+  max-height: auto;
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(to right, #fff, #eee);
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+h1,
+h2 {
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input,
+textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 12px;
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #218c54;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  background: #ecf0f1;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+p {
+  margin-top: 10px;
+  color: #777;
+}
+
+.user-container {
+  width: 800px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.26), 0 1px 1px 0 rgba(0, 0, 0, 0.12),
+    0 2px 1px -1px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-wrapper {
+  max-width: 400px;
+  min-width: 200px;
+  margin: 8px;
+}
+
+.igx-calendar {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.26), 0 1px 1px 0 rgba(0, 0, 0, 0.12),
+    0 2px 1px -1px rgba(0, 0, 0, 0.08);
+}
+
+button i {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.status-active {
+  color: green;
+}
+
+.status-pending {
+  color: yellow;
+}
+
+.status-rejected {
+  color: red;
+}
+
+.big-heading {
+  font-size: 2em;
+  color: #000;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("https://img.freepik.com/free-vector/blue-polygon-dark-background-social-template_53876-116080.jpg?w=1380&t=st=1708299796~exp=1708300396~hmac=fda7fc38cbbfb924b3eda59ca7af2ca6bcdfa9af70ab4463b8a20965839d4c71");
+  background-repeat: repeat-y;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-clip: border-box;
+}
+
