@@ -21,10 +21,10 @@
             Welcome , {{ userData.firstName }} {{ userData.lastName }}
           </h1>
           <h2 class="big-heading">Your Information</h2>
-          <p>First Name: {{ userData.firstName }}</p>
-          <p>Last Name: {{ userData.lastName }}</p>
-          <p>Username: {{ userData.username }}</p>
-          <p>Days Left: {{ userData.daysOff }}</p>
+          <p class="user-info">First Name: {{ userData.firstName }}</p>
+          <p class="user-info">Last Name: {{ userData.lastName }}</p>
+          <p class="user-info">Username: {{ userData.username }}</p>
+          <p class="user-info">Days Left: {{ userData.daysOff }}</p>
           <button routerLink="/timesheet">Request List</button>
         </div>
 

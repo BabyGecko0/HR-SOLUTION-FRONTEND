@@ -24,7 +24,9 @@
           <p>From: {{ timesheet.fromDate | date }}</p>
           <p>To: {{ timesheet.toDate | date }}</p>
           <p>Note: {{ timesheet.note }}</p>
-          <p>Status: {{ timesheet.status }}</p>
+          <p [style.color]="getStatusStyle(timesheet.status).color">
+            Status: {{ timesheet.status }}
+          </p>
         </li>
       </ul>
     </ng-container>
