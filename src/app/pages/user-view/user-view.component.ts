@@ -14,7 +14,7 @@ import {
   NgbDate,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TimesheetRequest } from 'src/app/models/timesheet-request';
-import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, NgModel, ValidationErrors, Validators } from '@angular/forms';
 import { Status } from 'src/app/models/status';
 
 @Component({
@@ -46,7 +46,7 @@ export class UserViewComponent implements OnInit {
     this.vacationForm = this.fb.group({
       note: ['', Validators.required],
       fromDate: [null, Validators.required],
-      toDate: [null, Validators.required],
+      toDate: [null, [Validators.required, this.validateToDate.bind(this)]],
     });
 
     this.minDate = calendar.getToday();
@@ -107,39 +107,43 @@ export class UserViewComponent implements OnInit {
   }
 
   onRequestButtonClick(): void {
-    const fromDate = this.vacationForm.value.fromDate;
-    const toDate = this.vacationForm.value.toDate;
-    const note = this.vacationForm.value.note;
-    const createdBy = this.userData.username;
-
-    const request: TimesheetRequest = {
-      fromDate:
-        fromDate !== null
-          ? new Date(fromDate.year, fromDate.month - 1, fromDate.day + 1)
-          : null,
-      toDate:
-        toDate !== null
-          ? new Date(toDate.year, toDate.month - 1, toDate.day + 1)
-          : null,
-      note,
-      createdBy,
-    };
-
-    const subscription: Subscription = this.crudService
-      .createTimesheet(this.id ?? '', request)
-      .subscribe({
-        next: (response) => {
-          alert('Vacation request submitted successfully!');
-          console.log('Vacation request submitted successfully:', response);
-        },
-        error: (error) => {
-          console.error('Error submitting vacation request:', error);
-        },
-        complete: () => {
-          console.log('Vacation request submission completed');
-        },
-      });
+    if (this.vacationForm.valid) {
+      const fromDate = this.vacationForm.value.fromDate;
+      const toDate = this.vacationForm.value.toDate;
+      const note = this.vacationForm.value.note;
+      const createdBy = this.userData.username;
+  
+      // Check if the fromDate is before or equal to the toDate
+      if (this.isBefore(fromDate, toDate) || this.isEqual(fromDate, toDate)) {
+        const request: TimesheetRequest = {
+          fromDate: fromDate !== null ? new Date(fromDate.year, fromDate.month - 1, fromDate.day + 1) : null,
+          toDate: toDate !== null ? new Date(toDate.year, toDate.month - 1, toDate.day + 1) : null,
+          note,
+          createdBy,
+        };
+  
+        const subscription: Subscription = this.crudService
+          .createTimesheet(this.id ?? '', request)
+          .subscribe({
+            next: (response) => {
+              alert('Vacation request submitted successfully!');
+              console.log('Vacation request submitted successfully:', response);
+            },
+            error: (error) => {
+              console.error('Error submitting vacation request:', error);
+            },
+            complete: () => {
+              console.log('Vacation request submission completed');
+            },
+          });
+      } else {
+        alert('Invalid date range. Please select a valid date range.');
+      }
+    } else {
+      alert('Please fill out all required fields and select a valid date range.');
+    }
   }
+  
 
   getStatusStyle(status: Status): any {
     let color: string;
@@ -310,4 +314,21 @@ export class UserViewComponent implements OnInit {
     }
     return false;
   }
+  validateToDate(control: AbstractControl): ValidationErrors | null {
+    if (this.vacationForm && this.vacationForm.get('fromDate') && control.value) {
+      const fromDateValue = this.vacationForm.get('fromDate')?.value;
+  
+      if (fromDateValue) {
+        const fromDate = new Date(fromDateValue.year, fromDateValue.month - 1, fromDateValue.day);
+        const toDate = new Date(control.value.year, control.value.month - 1, control.value.day);
+  
+        if (fromDate > toDate) {
+          return { invalidDateRange: true };
+        }
+      }
+    }
+  
+    return null;
+  }
+  
 }
